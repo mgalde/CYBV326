@@ -7,6 +7,8 @@
   <meta charset="UTF-8">
   
   <title>CYBV 326 - Intro Video</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+
   
   
   
@@ -24,9 +26,9 @@ body {
 }
 
 p {
-  font-family: monospace;
+  font-family: 'Fira Code', monospace;
   font-weight: bold;
-  font-size: 4.1vh;
+  font-size: calc(1.5rem + 1vw);
   margin: 0;
   padding: 0;
   line-height: 1;
@@ -67,6 +69,10 @@ p {
   100% {
     opacity: 1;
   }
+  #console {
+    transition: opacity 0.5s;
+}
+
 }
 </style>
 
@@ -136,20 +142,27 @@ var txt = [
 var docfrag = document.createDocumentFragment();
 
 function updateScreen() {
-  //Shuffle the "txt" array
+  // Shuffle the "txt" array
   txt.push(txt.shift());
-  //Rebuild document fragment
-  txt.forEach(function(e) {
-    var p = document.createElement("p");
-    p.textContent = e;
-    docfrag.appendChild(p);
-  });
-  //Clear DOM body
-  while (c.firstChild) {
-    c.removeChild(c.firstChild);
-  }
-  c.appendChild(docfrag);
+  // Start fade out
+  c.style.opacity = 0;
+  setTimeout(function() {
+    //Rebuild document fragment after fade out
+    txt.forEach(function(e) {
+      var p = document.createElement("p");
+      p.textContent = e;
+      docfrag.appendChild(p);
+    });
+    //Clear DOM body
+    while (c.firstChild) {
+      c.removeChild(c.firstChild);
+    }
+    c.appendChild(docfrag);
+    // Fade in
+    c.style.opacity = 1;
+  }, 500); // this delay should match the fade-out duration
 }
+
     </script>
 
   
