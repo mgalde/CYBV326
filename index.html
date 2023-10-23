@@ -7,8 +7,6 @@
   <meta charset="UTF-8">
   
   <title>CYBV 326 - Intro Video</title>
-  <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
-
   
   
   
@@ -26,9 +24,9 @@ body {
 }
 
 p {
-  font-family: 'Fira Code', monospace;
+  font-family: monospace;
   font-weight: bold;
-  font-size: calc(1.5rem + 1vw);
+  font-size: 4.1vh;
   margin: 0;
   padding: 0;
   line-height: 1;
@@ -62,10 +60,6 @@ p {
   animation-timing-function: linear;
 }
 
-#console {
-    transition: opacity 1s; /* Increase this to 1 second */
-}
-
 @keyframes blink {
   0% {
     opacity: 0;
@@ -73,9 +67,6 @@ p {
   100% {
     opacity: 1;
   }
-}
-
-
 }
 </style>
 
@@ -93,7 +84,7 @@ p {
   
   
       <script id="rendered-js" >
-var intervalID = window.setInterval(updateScreen, 2500); // Adjust this to 2500 milliseconds or 2.5 seconds
+var intervalID = window.setInterval(updateScreen, 200);
 var c = document.getElementById("console");
 
 var txt = [
@@ -119,7 +110,7 @@ var txt = [
   "SCAN: __ Transport - Segment",
   "SCAN: __ Network - Packet",
   "SCAN: __ Data - Frame",
-  "SCAN: __ She wants to runs a program on the network that will allow her to see which ports are accepting TCP and UDP connections.  Which tool should she use?  NMAP",
+  "SCAN: __ She wants to runs a program on the network that will allow her to see which ports are accepting TCP and UDP connections.  Which tool should she use?  NMAP",
   "SCAN: A process sends messages into , and receives messages from, the network through a software interface called a socket",
   "Message = b\x05\x64\x08\xc4\x01\x00\x02\x00\x39\x0d\xde\xce\x0e\x6c\xd1",
   "Message = b\x05\x64\x08\xc4\x01\x00\x02\x00\x39\x0d\xde\xce\x0e\x6c\xd1",
@@ -145,27 +136,20 @@ var txt = [
 var docfrag = document.createDocumentFragment();
 
 function updateScreen() {
-  // Shuffle the "txt" array
+  //Shuffle the "txt" array
   txt.push(txt.shift());
-  // Start fade out
-  c.style.opacity = 0;
-  setTimeout(function() {
-    //Rebuild document fragment after fade out
-    txt.forEach(function(e) {
-      var p = document.createElement("p");
-      p.textContent = e;
-      docfrag.appendChild(p);
-    });
-    //Clear DOM body
-    while (c.firstChild) {
-      c.removeChild(c.firstChild);
-    }
-    c.appendChild(docfrag);
-    // Fade in
-    c.style.opacity = 1;
-  }, 500); // this delay should match the fade-out duration
+  //Rebuild document fragment
+  txt.forEach(function(e) {
+    var p = document.createElement("p");
+    p.textContent = e;
+    docfrag.appendChild(p);
+  });
+  //Clear DOM body
+  while (c.firstChild) {
+    c.removeChild(c.firstChild);
+  }
+  c.appendChild(docfrag);
 }
-
     </script>
 
   
