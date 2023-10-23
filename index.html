@@ -62,6 +62,10 @@ p {
   animation-timing-function: linear;
 }
 
+#console {
+    transition: opacity 1s; /* Increase this to 1 second */
+}
+
 @keyframes blink {
   0% {
     opacity: 0;
@@ -69,9 +73,8 @@ p {
   100% {
     opacity: 1;
   }
-  #console {
-    transition: opacity 0.5s;
 }
+
 
 }
 </style>
@@ -90,7 +93,7 @@ p {
   
   
       <script id="rendered-js" >
-var intervalID = window.setInterval(updateScreen, 200);
+var intervalID = window.setInterval(updateScreen, 2500); // Adjust this to 2500 milliseconds or 2.5 seconds
 var c = document.getElementById("console");
 
 var txt = [
